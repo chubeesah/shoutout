@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create(user_params)
-    render :index
+    redirect_to users_path, notice: "User Created!"
   end
 
   def destroy
