@@ -11,10 +11,15 @@
   </thead>
 
   <tbody>
-    <% @shouts.each do |shouts| %>
+    <% @user.shouts.each do |shouts| %>
       <tr>
-        <td><%= shouts.yell %></td>
+        <td><%= shouts.yell %>
+        <br>
+        <%= link_to 'Edit', edit_user_shout_path(@user, shouts) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<%= link_to 'New SHOUTS', new_user_shout_path(@user)  %>
+<%= console %>

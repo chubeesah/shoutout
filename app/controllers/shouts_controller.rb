@@ -4,16 +4,13 @@ class ShoutsController < ApplicationController
 
 
   def index
-    
-    @shouts = @user.shouts
+    @shouts = @user.shouts.all
   end
 
-  def show
-    @shout = Shout.find(params[:id])
-    respond_to do |format|
-      format.html { render :show }
-    end
-  end
+  # def show
+  #   @shout = Shout.find(params[:id])
+  #   render :show
+  # end
 
   def new
     @shout = Shout.new
@@ -22,8 +19,8 @@ class ShoutsController < ApplicationController
   end
 
   def edit
-    @post = Shout.find(params[:id])
-    render :edit
+    # @shout = Shout.find(params[:id])
+    # render :edit
   end
 
   def create
@@ -33,10 +30,16 @@ class ShoutsController < ApplicationController
     redirect_to user_shouts_path
   end
 
+  def update
+    @shout.update(params.require(:shout).permit(:yell))
+    @shout.save
+    redirect_to user_shouts_path(@user, @shouts)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_shout
-      @shout = Shout.find(params[:user_id])
+      @shout = Shout.find(params[:id])
     end
 
     def set_user

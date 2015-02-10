@@ -7,12 +7,12 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    render :new
   end
 
   def create
-    @user = User.create(user_params)
-    redirect_to users_path, notice: "User Created!"
+    binding.pry
+    @user = User.create(params.require("/users/new").permit(:username, :password, :email))
+    redirect_to :action => :index
   end
 
   def destroy
