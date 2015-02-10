@@ -27,12 +27,7 @@ class ShoutsController < ApplicationController
   end
 
   def create
-<<<<<<< HEAD
-    @shout = Shout.new(params.require("/users/8/shouts").permit(:yell))
-=======
-    binding.pry
     @shout = Shout.new(params.require(:shout).permit(:yell))
->>>>>>> ae2019cc068d29a280361b47fe8f391e3ca3fb8b
     @shout.user_id = params[:user_id]
     @shout.save
     redirect_to user_shouts_path
