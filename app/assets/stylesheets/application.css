@@ -22,3 +22,9 @@ body {
 * {
   font-family: Arial;
 }
+
+.notice {
+  float: right;
+  display: inline-block;
+  font-weight: bold;
+}

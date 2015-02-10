@@ -1,6 +1,8 @@
 class ShoutsController < ApplicationController
   before_action :set_shout, only: [:show, :edit, :update, :destroy, :patch, :put, :post]
   before_action :set_user
+  before_action :authenticate_user!, :except => [:show, :index]
+  before_action :redirect_unless_privledged, :except => [:show, :index]
 
 
   def index
@@ -24,16 +26,23 @@ class ShoutsController < ApplicationController
   end
 
   def create
-    @shout = Shout.new(params.require(:shout).permit(:yell))
-    @shout.user_id = params[:user_id]
-    @shout.save
-    redirect_to user_shouts_path
+      @shout = Shout.new(params.require(:shout).permit(:yell))
+      @shout.user_id = params[:user_id]
+      @shout.save
+      redirect_to user_shouts_path
   end
 
   def update
     @shout.update(params.require(:shout).permit(:yell))
     @shout.save
     redirect_to user_shouts_path(@user, @shouts)
+  end
+
+  def destroy
+    @shout = Shout.find(params[:id])
+    @shout.destroy
+    flash[:notice] = "Shout was dominated."
+    redirect_to user_shouts_path
   end
 
   private
@@ -44,6 +53,13 @@ class ShoutsController < ApplicationController
 
     def set_user
       @user = User.find(params[:user_id])
+    end
+
+    def redirect_unless_privledged
+      unless current_user == @user
+        flash[:notice] = "You don't have access to do this."
+        redirect_to :root
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
