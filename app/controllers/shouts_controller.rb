@@ -1,44 +1,46 @@
 class ShoutsController < ApplicationController
-  before_action :set_shout, only: [:show, :edit, :update, :destroy, :patch, :put]
+  before_action :set_shout, only: [:show, :edit, :update, :destroy, :patch, :put, :post]
   # before_action :set_user
 
 
   def index
-    @shouts = shouts.all
+    @shouts = Shout.all
   end
 
   def show
     @shout = Shout.find(params[:id])
     respond_to do |format|
       format.html { render :show }
-      format.json { @post.to_json }
     end
   end
 
   def new
+    @shout = Shout.new
+    # binding.pry
+    render :new
   end
 
   def edit
+    @post = Shout.find(params[:id])
+    render :edit
   end
 
   def create
+    binding.pry
+    @shout = Shout.new(params.require("/users/8/shouts").permit(:yell))
+    @shout.user_id = params[:user_id]
+    @shout.save
+    redirect_to user_shouts_path
   end
-
-  def create
-  end
-
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @shout = Post.find(params[:id])
+    def set_shout
+      @shout = Shout.find(params[:user_id])
     end
 
-    # def set_user
-    #   @user = User.find(params[:user_id])
-    # end
     # Never trust parameters from the scary internet, only allow the white list through.
-    def post_params
-      params.require(:shout).permit(:yell, :user_id)
-    end
+    # def shout_params
+    #   params.require(:shout).permit(:yell, :user_id, :id)
+    # end
 end
