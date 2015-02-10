@@ -1,3 +1,3 @@
-class User < ActiveRecord::Base
+class Users < ActiveRecord::Base
   has_many :shouts
 end
