@@ -27,7 +27,6 @@ class ShoutsController < ApplicationController
   end
 
   def create
-    binding.pry
     @shout = Shout.new(params.require(:shout).permit(:yell))
     @shout.user_id = params[:user_id]
     @shout.save
