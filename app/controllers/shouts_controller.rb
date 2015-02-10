@@ -56,7 +56,7 @@ class ShoutsController < ApplicationController
     end
 
     def redirect_unless_privledged
-      unless current_user == @user
+      unless (current_user == @user) || (current_user.is_admin == true)
         flash[:notice] = "You don't have access to do this."
         redirect_to :root
       end
