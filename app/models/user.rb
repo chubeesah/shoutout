@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
 
 
   def follow(user)
-    self.following.where(:followed_id => user.id).first_or_create!
+    self.relationships.create!(followed_id: other_user.id)
   end
 
   def unfollow(user)
