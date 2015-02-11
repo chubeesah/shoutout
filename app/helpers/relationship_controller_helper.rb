@@ -1,0 +1,2 @@
+module RelationshipControllerHelper
+end

@@ -1,9 +1,20 @@
 Rails.application.routes.draw do
+  get 'relationship_controller/index'
+
+  get 'relationship_controller/delete'
+
+  get 'relationship_controller/put'
+
+  get 'relationship_controller/get'
+
   devise_for :users
   resources :users do
     resources :shouts
 end
 
+get '/users/:user_id/followers', to: 'users#followers'
+put '/users/:user_id/followers', to: 'users#follow'
+delete '/users/:user_id/followers', to: 'users#unfollow'
 # post "users/:user_id/shouts/new"    => "shouts#create"
 root to: "users#index"
 # post "users/new" => "users#create"
