@@ -16,7 +16,8 @@
 
 body {
   margin-left: 20%;
-  max-width: 60%
+  max-width: 60%;
+  background-color: #CDD3E5;
 }
 
 * {
@@ -24,7 +25,35 @@ body {
 }
 
 .notice {
-  float: right;
-  display: inline-block;
+  text-align: center;
+  font-size: 20px;
   font-weight: bold;
+  color: red;
+  font-weight: bold;
+}
+
+
+.shout-links {
+  float: right;
+  font-size: 10px;
+  margin-right: 20%;
+}
+
+.shout-zone {
+  background-color: #fff;
+  height: 100%;
+  padding: 20px;
+}
+
+.user-header{
+  border-top-style: solid;
+  border-bottom: solid;
+  border-color: #000;
+  border-width: 1px;
+  font-size: 44px;
+  margin: 15px;
+}
+
+.info {
+  font-size: 14px;
 }

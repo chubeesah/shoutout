@@ -1,8 +1,10 @@
+<div class="user-header"><%= "SHOUTHAUS" %></div>
 <ul>
     <%  @user.each do |user| %>
         <li><h3><%= link_to user.username, user_shouts_path(user) %></h3>
           <%= link_to "Follow", user_follow_path(user) %>
           <%= link_to "Delete User", user_path(user), method: :delete %>
+          <%= link_to "Unfollow", user_follow_path(user), method: :delete %>
     <%  end  %>
 </ul>
 

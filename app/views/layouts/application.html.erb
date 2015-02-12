@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Shoutout</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <div class="welcome-banner">
-    <% if current_user %>
-      <b><%= "Welcome #{current_user.username}!" %></b>
-      <%="#{current_user.followers.count} Follower(s) "%>
-      <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
-    <% end %>
-  </div>
+  <head>
+    <title>Shoutout</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <div class="shout-zone">
+      <div class="info">
+        <% if current_user %>
+          <b><%= "Welcome #{current_user.username}!" %></b>
+          <%="#{current_user.followers.count} Follower(s) "%>
+          <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+        <% end %>
+      </div>
 
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-
-  <%= yield %>
-
-</body>
+      
+      
+      <%= yield %>
+    </div>
+  </body>
 </html>
