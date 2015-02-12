@@ -13,7 +13,8 @@
       <div class="info">
         <% if current_user %>
           <b><%= "Welcome #{current_user.username}!" %></b>
-          <%="#{current_user.followers.count} Follower(s) "%>
+          <%="#{current_user.followers.count} Followers "%>
+          <%="#{current_user.following.count} Following "%>
           <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
         <% end %>
       </div>

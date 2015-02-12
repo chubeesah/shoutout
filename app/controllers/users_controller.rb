@@ -21,6 +21,7 @@ class UsersController < ApplicationController
   end
 
   def followers
+    other_user = User.find(params[:user_id])
     if (other_user[:id] == current_user[:id])
       flash[:notice] = "You cannot follow yourself"
     elsif Relationship.exists?(follower_id: current_user[:id], followed_id: other_user[:id])
