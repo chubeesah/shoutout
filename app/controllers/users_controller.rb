@@ -21,6 +21,16 @@ class UsersController < ApplicationController
     redirect_to users_path, notice: "User deleted!"
   end
 
+  def followers
+    other_user = User.find(params[:user_id])
+    current_user.follow(other_user)
+    redirect_to :root
+  end
+
+  def unfollow
+    
+  end
+
   private
   def user_params
      params.require(:user).permit(:username, :password)

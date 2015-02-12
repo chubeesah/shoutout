@@ -1,9 +1,8 @@
 <ul>
     <%  @user.each do |user| %>
-        <li>Hi there, <%= user.username %>. </li>
-        <li> <%= link_to "Shouts", user_shouts_path(user) %>
+        <li><h3><%= link_to user.username, user_shouts_path(user) %></h3>
+          <%= link_to "Follow", user_follow_path(user) %>
           <%= link_to "Delete User", user_path(user), method: :delete %>
-        </li>
     <%  end  %>
 </ul>
 

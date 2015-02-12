@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   has_many :followers, through: :reverse_relationships, source: :follower
 
 
-  def follow(user)
+  def follow(other_user)
     self.relationships.create!(followed_id: other_user.id)
   end
 
